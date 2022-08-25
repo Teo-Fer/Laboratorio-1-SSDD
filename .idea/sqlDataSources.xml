@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DdlMappings">
+    <mapping uuid="bd9a7c91-bec1-4c51-84ef-a354448b2b74" name="bancodb@localhost Mapping">
+      <data-sources db="04a4b9d8-8982-4189-b202-137a1be02d63" />
+      <scope>
+        <node kind="database" qname="bancodb">
+          <node kind="schema" qname="public" />
+        </node>
+      </scope>
+    </mapping>
+  </component>
+</project>

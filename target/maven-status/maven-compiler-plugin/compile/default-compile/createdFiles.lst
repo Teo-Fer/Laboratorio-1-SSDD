@@ -1,1 +1,6 @@
-com/laboratorio/demo/LaboratorioApplication.class
+com/banco/model/Movement.class
+com/banco/repository/MovementRepository.class
+com/banco/service/OperationType.class
+com/banco/controller/MovementController.class
+com/Lab01Application.class
+com/banco/service/MovementService.class

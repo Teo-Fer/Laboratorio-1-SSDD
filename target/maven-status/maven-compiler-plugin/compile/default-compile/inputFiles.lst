@@ -1,1 +1,6 @@
-/home/teodoro/UNPSJB/4to año/SegundoCuatrimestre/SistemasDistribuidos/Banco/src/main/java/com/laboratorio/demo/LaboratorioApplication.java
+/home/teodoro/UNPSJB/4to año/SegundoCuatrimestre/SistemasDistribuidos/Laboratorio-1-SSDD/src/main/java/com/Lab01Application.java
+/home/teodoro/UNPSJB/4to año/SegundoCuatrimestre/SistemasDistribuidos/Laboratorio-1-SSDD/src/main/java/com/banco/repository/MovementRepository.java
+/home/teodoro/UNPSJB/4to año/SegundoCuatrimestre/SistemasDistribuidos/Laboratorio-1-SSDD/src/main/java/com/banco/service/OperationType.java
+/home/teodoro/UNPSJB/4to año/SegundoCuatrimestre/SistemasDistribuidos/Laboratorio-1-SSDD/src/main/java/com/banco/model/Movement.java
+/home/teodoro/UNPSJB/4to año/SegundoCuatrimestre/SistemasDistribuidos/Laboratorio-1-SSDD/src/main/java/com/banco/service/MovementService.java
+/home/teodoro/UNPSJB/4to año/SegundoCuatrimestre/SistemasDistribuidos/Laboratorio-1-SSDD/src/main/java/com/banco/controller/MovementController.java
