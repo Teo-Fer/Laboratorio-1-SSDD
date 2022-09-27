@@ -48,7 +48,76 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<plugin>
+				<groupId>io.fabric8</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<version>0.40.2</version>
+				<configuration>
+					<logDate>default</logDate>
+					<autoPull>true</autoPull>
+					<verbose>true</verbose>
+					<dockerHost>unix:///var/run/docker.sock</dockerHost>
+					<images>
+						<image>
+							<alias>${db}</alias>
+							<name>postgres:13.8-alpine</name>
+							<run>
+								<env>
+									<POSTGRES_USER>bancoadm</POSTGRES_USER>
+									<POSTGRES_PASSWORD>bancoadm</POSTGRES_PASSWORD>
+									<POSTGRES_DB>bancodb</POSTGRES_DB>
+								</env>
+								<wait>
+									<log>database system is ready to accept connections</log>
+									<time>20000</time>
+								</wait>
+								<log>
+									<prefix>DB:</prefix>
+									<color>yellow</color>
+								</log>
+							</run>
+						</image>
+
+						<image>
+							<name>${project.name}:${project.version}</name>
+							<build>
+								<from>openjdk:17</from>
+								<assembly>
+									<name>build</name>
+									<descriptorRef>artifact</descriptorRef>
+								</assembly>
+								<ports>
+									<port>8080</port>
+								</ports>
+								<cmd>java -jar build/${project.name}-${project.version}.jar</cmd>
+							</build>
+							<run>
+								<ports>
+									<port>${spring.port}:8080</port>
+								</ports>
+								<env>
+									<SPRING_DATASOURCE_URL>jdbc:postgresql://${db}:5432/bancodb</SPRING_DATASOURCE_URL>
+									<SPRING_DATASOURCE_USER>bancoadm</SPRING_DATASOURCE_USER>
+									<SPRING_DATASOURCE_PASSWORD>bancoadm</SPRING_DATASOURCE_PASSWORD>
+								</env>
+								<log>
+									<prefix>spring: </prefix>
+									<color>blue</color>
+								</log>
+								<dependsOn>
+									<container>${db}</container>
+								</dependsOn>
+								<links>
+									<link>${db}</link>
+								</links>
+								<wait>
+									<time>10000</time>
+								</wait>
+							</run>
+						</image>
+					</images>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
-
 </project>

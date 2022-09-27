@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: com.banco.lab01.Test3
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.08 s <<< FAILURE! - in com.banco.lab01.Test3
+FirstDeposit  Time elapsed: 0.077 s  <<< ERROR!
+org.springframework.web.client.HttpClientErrorException$MethodNotAllowed: 405 : "{"timestamp":"2022-09-26T22:06:10.480+00:00","status":405,"error":"Method Not Allowed","path":"/movements/deposit"}"
+	at com.banco.lab01.Test3.FirstDeposit(Test3.java:39)
+

@@ -1,6 +1,5 @@
 package com.banco.lab01;
 
-import com.banco.service.OperationType;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -31,7 +30,7 @@ class Test1 {
 	@Test
 	@Order(1)
 	public void FirstDeposit() throws Exception{
-		this.mockMvc.perform(post("/movements/deposit?amount=1000"))
+		this.mockMvc.perform(post("http://localhost:8080/movements/deposit?amount=1000"))
 				.andDo(print())
 				.andExpect(status().isOk())
 				.andExpect(content().contentType("application/json"))
@@ -42,7 +41,7 @@ class Test1 {
 	@Test
 	@Order(2)
 	public void SecondDeposit() throws Exception{
-		this.mockMvc.perform(post("/movements/deposit?amount=1000"))
+		this.mockMvc.perform(post("http://localhost:8080/movements/deposit?amount=1000"))
 				.andDo(print())
 				.andExpect(status().isOk())
 				.andExpect(content().contentType("application/json"))
@@ -53,7 +52,7 @@ class Test1 {
 	@Test
 	@Order(3)
 	public void interestOk() throws Exception{
-		this.mockMvc.perform(post("/movements/interest"))
+		this.mockMvc.perform(post("http://localhost:8080/movements/interest"))
 				.andDo(print())
 				.andExpect(status().isOk())
 				.andExpect(content().contentType("application/json"))
@@ -64,7 +63,7 @@ class Test1 {
 	@Test
 	@Order(4)
 	public void balanceOk() throws Exception{
-		this.mockMvc.perform(get("/movements/balance"))
+		this.mockMvc.perform(get("http://localhost:8080/movements/balance"))
 				.andDo(print())
 				.andExpect(status().isOk())
 				.andExpect(content().contentType("application/json"))
@@ -73,7 +72,7 @@ class Test1 {
 
 	@AfterAll
 	public void cleanDatabase() throws Exception{
-		this.mockMvc.perform(delete("/movements"))
+		this.mockMvc.perform(delete("http://localhost:8080/movements"))
 				.andDo(print())
 				.andExpect(status().isOk())
 				.andExpect(content().contentType("application/json"))
