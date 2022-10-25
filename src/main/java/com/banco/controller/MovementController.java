@@ -11,6 +11,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.banco.kafka.Producer;
+
 import javax.websocket.server.PathParam;
 import java.util.Collection;
 import java.util.HashMap;
@@ -22,6 +24,9 @@ public class MovementController {
 
     @Autowired
     private MovementService movementService;
+
+    @Autowired
+    Producer<Movement> producer;
 
     @GetMapping()
     public ResponseEntity<Collection<Movement>> getAccount() {
@@ -51,6 +56,10 @@ public class MovementController {
     public ResponseEntity<Movement> deposit(@RequestParam("amount") double amount){
         Movement movement = movementService.create(new Movement(OperationType.Deposit, amount));
         if (movement.getId()==null) return ResponseEntity.badRequest().build();
+        Movement mvAux = new Movement();
+        mvAux.setType(OperationType.Deposit);
+        mvAux.setAmount(amount);
+        producer.logCreate("movements", mvAux);
         return ResponseEntity.ok().body(movement);
     }
 
